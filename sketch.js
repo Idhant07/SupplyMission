@@ -4,6 +4,9 @@ const Engine = Matter.Engine;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Body = Matter.Body;
+var bottomBody;
+var leftBody;
+var rightBody;
 
 function preload()
 {
@@ -39,7 +42,8 @@ function setup() {
 	//Create a Ground
 	ground = Bodies.rectangle(width/2, 650, width, 10 , {isStatic:true} );
  	World.add(world, ground);
-box = new Box(width/2,650)
+	box = new Box(width/2,650)
+	
 
 	Engine.run(engine);
   
@@ -52,13 +56,16 @@ function draw() {
   packageSprite.x= packageBody.position.x 
   packageSprite.y= packageBody.position.y 
   drawSprites();
-  box.display ()
+  box.display();
+  leftBody.display();
+  rightBody.display();
+  bottomBody.display();
 }
 
 function keyPressed() {
  if (keyCode === DOWN_ARROW) {
     // Look at the hints in the document and understand how to make the package body fall only on press of the Down arrow key.
-    Matter.Body.setStatic(packageBody, false);
+    Matter.Body.setStatic(packageBody, true);
 	
 	packageSprite.x = packageBody.position.x
     packageSprite.y = packageBody.position.y  
